@@ -50,8 +50,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
 
-    Log.d("Demo", "Recomposed")
-
     var count by remember { mutableStateOf(0) }
 
     Column(
