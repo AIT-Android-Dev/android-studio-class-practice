@@ -2,6 +2,7 @@ package com.example.classandroidstudiopractice
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.EditText
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -36,33 +38,28 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ClassAndroidStudioPracticeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
                     )
-                }
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun Greeting() {
 
     Log.d("Demo", "Recomposed")
 
     var count by remember { mutableStateOf(0) }
+    var name by remember { mutableStateOf("")}
 
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+    Row {
         Text(
             "Count: $count", modifier =
                 Modifier
                     .padding(16.dp)
-                    .width(200.dp)
-                    .height((60.dp))
+                    .background(Color.Red)
+                    .padding(16.dp)
         )
 
         Text(if (count < 5) "Low" else "High",
@@ -70,15 +67,19 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             fontSize = 24.sp
         )
 
-//        if (count > 5) {
-//            Text("High")
-//        } else {
-//            Text("Low")
-//        }
-
         Button(onClick = {
             count++
         }) { Text("Count") }
+
+        TextField(
+            value = name,
+            onValueChange = { text ->
+                name = text
+            },
+            label = { Text("Name") }
+        )
+
+        Text("Hello, $name")
     }
 }
 
@@ -86,6 +87,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     ClassAndroidStudioPracticeTheme {
-        Greeting("Android")
+        Greeting()
     }
 }
