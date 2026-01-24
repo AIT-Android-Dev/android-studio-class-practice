@@ -2,25 +2,18 @@ package com.example.classandroidstudiopractice
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -38,8 +31,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ClassAndroidStudioPracticeTheme {
-                    Greeting(
-                    )
+                Greeting(
+                )
             }
         }
     }
@@ -50,10 +43,12 @@ fun Greeting() {
 
     Log.d("Demo", "Recomposed")
 
-    var count by remember { mutableStateOf(0) }
-    var name by remember { mutableStateOf("")}
+    var count by remember { mutableIntStateOf(0) }
+    var name by remember { mutableStateOf("") }
 
-    Row {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Text(
             "Count: $count", modifier =
                 Modifier
@@ -62,7 +57,8 @@ fun Greeting() {
                     .padding(16.dp)
         )
 
-        Text(if (count < 5) "Low" else "High",
+        Text(
+            if (count < 5) "Low" else "High",
             color = Color.Blue,
             fontSize = 24.sp
         )
