@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Class Android Studio Practice</string>
+    <string name="happy_birthday">Happy Birthday</string>
+    <string name="from_text">From Emir</string>
 </resources>
